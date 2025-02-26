@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        min-height: 100vh;
+        margin: 0;
+      }
+      .box {
+        width: 600px;
+        height: 300px;
+        background: linear-gradient(0deg, white, red);
+        transform: skewX(75deg) rotate(-20deg);
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const box = document.querySelector(".box");
+          let progress = 0;
+          const speed = 0.8;
+          const colors = ["white, red", "white, blue", "white, purple", "white, pink"];
+          let colorIndex = 0;
+      
+          function updateBox() {
+            progress += speed;
+            if (progress >= 100) {
+              progress = 0;
+              colorIndex = (colorIndex + 1) % colors.length;
+              box.style.background = `linear-gradient(0deg, ${colors[colorIndex]})`;
+            }
+            box.style.clipPath = `polygon(0% 0%, 100% 0%, 100% ${progress}%, 0% ${progress}%)`;
+          }
+      
+          setInterval(updateBox, 16);
+        });
+      </script>      
+  </body>
+</html>
